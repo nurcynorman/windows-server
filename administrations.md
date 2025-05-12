@@ -10,3 +10,18 @@ icacls SecureDoc.docx /setintegritylevel h #set ingerity levels to high
 icacls C:\OldData /substitute S-1-5-21-OLD-SID S-1-5-21-NEW-SID #replace one SID with another
 icacls C:\Inbox /verify /t #verify ACL Consistency
 icacls TestFile.txt /grant User1:(D,WDAC) # Getting advanced permissioons
+
+
+net share #display all shared folder on the current machine
+net share DataShare #display for a specific share
+net share DataShare=C:Data /remark:"For departmetn 123" #share a folder with a custom name and remark
+
+net share DataShare /delete #stop sharing a folder
+
+net share List="C:/Art List" #share a folder with spaces in the path
+
+net share Reports=C:\Reports /grant:HTB-Student,full #share a folder and grant a specific user full access
+net share LimitedShare=C:Temp /users:10 #limit share to 10 users
+net share Docs=C:Docs /cache:documents #enable caching of documents for offline access
+
+
