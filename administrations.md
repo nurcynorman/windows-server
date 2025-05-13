@@ -24,4 +24,15 @@ net share Reports=C:\Reports /grant:HTB-Student,full #share a folder and grant a
 net share LimitedShare=C:Temp /users:10 #limit share to 10 users
 net share Docs=C:Docs /cache:documents #enable caching of documents for offline access
 
+get-netadapter 
+get-netipconfiguration # show adapter info like ipxroute config
+
+remove-netroute -destinationprefix '192.168.1.0/24' # remove a route like ipxroute ripout
+
+get-netneighbor
+remove-netneighbor -interfaceindex 5 -ipaddress '192.168.1.25' #remove an arp/ndp entry like ipxroute board=1 remove
+
+get-netadapter | where-object {$_.name -like "*Ethernet"} #resolve adapter by name
+get-netadapter | where-object {$_.interfaceguid -eq "{}1A2B3C4D-...."} # resolve adapter by GUID
+
 
